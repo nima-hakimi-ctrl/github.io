@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nima Hakimi — Finance Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #0f1829;
+    --navy-light: #162035;
+    --navy-border: #1e2d4a;
+    --orange: #f47c20;
+    --orange-dim: #c4631a;
+    --orange-faint: rgba(244,124,32,0.08);
+    --orange-glow: rgba(244,124,32,0.15);
+    --white: #e8ecf2;
+    --muted: #7a8ba6;
+    --dim: #3d5070;
+    --green: #22c55e;
+    --red: #ef4444;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* TICKER */
+  .ticker-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 36px;
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--navy-border);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 500;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .ticker-label {
+    background: var(--orange);
+    color: #000;
+    font-weight: 600;
+    padding: 0 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ticker-track {
+    display: flex;
+    animation: ticker 44s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-right: 1px solid var(--navy-border);
+  }
+  .ticker-item .up { color: var(--green); }
+  .ticker-item .label { color: var(--white); font-weight: 500; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 36px; left: 0; right: 0;
+    height: 52px;
+    background: rgba(10,15,30,0.96);
+    border-bottom: 1px solid var(--navy-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 400;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid transparent;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--orange);
+    border-color: var(--orange);
+    background: var(--orange-faint);
+  }
+  .nav-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  /* MAIN */
+  main { padding-top: 88px; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
+    align-items: start;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--orange);
+  }
+  .hero-name {
+    font-family: var(--display);
+    font-size: clamp(68px, 7.5vw, 108px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .hero-name span { color: var(--orange); }
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    margin-bottom: 28px;
+  }
+  .hero-tagline {
+    font-size: 16px;
+    color: var(--white);
+    line-height: 1.75;
+    max-width: 540px;
+    font-weight: 300;
+    border-left: 2px solid var(--orange);
+    padding-left: 20px;
+    margin-bottom: 36px;
+  }
+  .hero-tagline strong { color: var(--orange); font-weight: 500; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #000;
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-dim); border-color: var(--orange-dim); }
+  .btn-outline {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    background: transparent;
+    border: 1px solid var(--orange);
+    padding: 10px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--orange-faint); }
+
+  /* STATS PANEL */
+  .stats-panel {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 24px;
+  }
+  .stats-header {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--navy-border);
+    display: flex;
+    justify-content: space-between;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(30,45,74,0.5);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-key { color: var(--muted); }
+  .stat-val { color: var(--white); font-weight: 500; text-align: right; max-width: 160px; }
+  .stat-val.orange { color: var(--orange); }
+  .stat-val.green { color: var(--green); }
+
+  /* SECTION */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: 42px;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    line-height: 1;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--navy-border);
+  }
+
+  /* EXPERIENCE */
+  .exp-grid { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    overflow: hidden;
+  }
+  .exp-item:hover, .exp-item.active {
+    border-left-color: var(--orange);
+    background: var(--navy-light);
+  }
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .exp-role { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+  .exp-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+  .exp-expand { font-family: var(--mono); font-size: 18px; color: var(--dim); transition: transform 0.3s; }
+  .exp-item.active .exp-expand { transform: rotate(45deg); color: var(--orange); }
+  .exp-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .exp-item.active .exp-body { max-height: 700px; }
+  .exp-body-inner {
+    padding: 20px 24px 24px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.65;
+  }
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 600;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--navy-border);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .tag.orange { border-color: rgba(244,124,32,0.3); color: var(--orange); background: var(--orange-faint); }
+
+  /* PROJECTS TABLE */
+  .projects-wrap {
+    border: 1px solid var(--navy-border);
+    overflow: hidden;
+  }
+  .projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+  }
+  .projects-table th {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: left;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--navy-border);
+    background: var(--navy-mid);
+    font-weight: 400;
+  }
+  .projects-table td {
+    font-size: 12px;
+    padding: 15px 18px;
+    border-bottom: 1px solid rgba(30,45,74,0.4);
+    vertical-align: top;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .projects-table tr:last-child td { border-bottom: none; }
+  .projects-table tr:hover td { background: var(--navy-light); }
+  .proj-title { color: var(--white); font-weight: 500; font-size: 13px; margin-bottom: 3px; }
+  .proj-sector { font-size: 10px; color: var(--dim); margin-top: 1px; }
+  .proj-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    border: 1px solid rgba(34,197,94,0.35);
+    color: var(--green);
+    background: rgba(34,197,94,0.05);
+  }
+  .proj-badge.passed {
+    border-color: rgba(244,124,32,0.35);
+    color: var(--orange);
+    background: var(--orange-faint);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+  }
+  .skill-block {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 20px;
+  }
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .skill-list li {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .skill-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .edu-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::after {
+    content: attr(data-abbr);
+    position: absolute;
+    bottom: -12px; right: 14px;
+    font-family: var(--display);
+    font-size: 88px;
+    color: rgba(30,45,74,0.7);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .edu-degree { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 5px; position: relative; z-index: 1; }
+  .edu-school { font-family: var(--mono); font-size: 11px; color: var(--orange); letter-spacing: 0.08em; margin-bottom: 14px; position: relative; z-index: 1; }
+  .edu-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); position: relative; z-index: 1; line-height: 1.9; }
+  .edu-gpa { font-size: 26px; font-family: var(--display); color: var(--orange); letter-spacing: 0.05em; display: block; margin-top: 10px; position: relative; z-index: 1; }
+
+  /* CERTIFICATIONS */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; }
+  .cert-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .cert-card:hover { border-color: var(--orange); background: var(--navy-light); }
+  .cert-icon {
+    width: 32px; height: 32px;
+    background: var(--orange-glow);
+    border: 1px solid rgba(244,124,32,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--orange);
+  }
+  .cert-name { font-family: var(--mono); font-size: 11px; color: var(--white); letter-spacing: 0.04em; line-height: 1.4; }
+  .cert-org { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* VOLUNTEERING */
+  .vol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .vol-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 22px 24px;
+    transition: all 0.2s;
+  }
+  .vol-card:hover { border-left: 3px solid var(--orange); background: var(--navy-light); }
+  .vol-org { font-family: var(--mono); font-size: 11px; color: var(--orange); letter-spacing: 0.09em; margin-bottom: 5px; }
+  .vol-role { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+  .vol-date { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+  .vol-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--navy-border);
+  }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .contact-headline { font-family: var(--display); font-size: 54px; line-height: 0.95; color: var(--white); margin-bottom: 16px; }
+  .contact-headline span { color: var(--orange); }
+  .contact-subline { font-size: 13px; color: var(--muted); line-height: 1.75; }
+  .contact-links { display: flex; flex-direction: column; gap: 2px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 15px 20px;
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    text-decoration: none;
+    transition: all 0.2s;
+    color: var(--white);
+  }
+  .contact-link:hover { border-color: var(--orange); background: var(--orange-faint); }
+  .contact-link-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; width: 80px; flex-shrink: 0; }
+  .contact-link-val { font-size: 13px; color: var(--white); }
+  .contact-link-arrow { margin-left: auto; color: var(--dim); font-size: 16px; transition: all 0.2s; }
+  .contact-link:hover .contact-link-arrow { color: var(--orange); transform: translateX(4px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--navy-border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">NH // PROFILE</div>
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="label">GPA</span> 3.70 <span class="up">▲ ASU W.P. CAREY</span></span>
+    <span class="ticker-item"><span class="label">FMVA</span> CERTIFIED <span class="up">✓</span></span>
+    <span class="ticker-item"><span class="label">CREDIT ANALYSIS</span> FINANCIAL EDGE CERTIFIED</span>
+    <span class="ticker-item"><span class="label">AVAILABILITY</span> SUMMER 2026 · SUMMER 2027</span>
+    <span class="ticker-item"><span class="label">FOCUS</span> CORPORATE & INVESTMENT BANKING</span>
+    <span class="ticker-item"><span class="label">LOCATION</span> BELLEVUE, WA · OPEN TO RELOCATION</span>
+    <span class="ticker-item"><span class="label">LANGUAGES</span> ENGLISH · FARSI (NATIVE)</span>
+    <span class="ticker-item"><span class="label">BLOOMBERG</span> BMC CERTIFIED</span>
+    <!-- duplicate for loop -->
+    <span class="ticker-item"><span class="label">GPA</span> 3.70 <span class="up">▲ ASU W.P. CAREY</span></span>
+    <span class="ticker-item"><span class="label">FMVA</span> CERTIFIED <span class="up">✓</span></span>
+    <span class="ticker-item"><span class="label">CREDIT ANALYSIS</span> FINANCIAL EDGE CERTIFIED</span>
+    <span class="ticker-item"><span class="label">AVAILABILITY</span> SUMMER 2026 · SUMMER 2027</span>
+    <span class="ticker-item"><span class="label">FOCUS</span> CORPORATE & INVESTMENT BANKING</span>
+    <span class="ticker-item"><span class="label">LOCATION</span> BELLEVUE, WA · OPEN TO RELOCATION</span>
+    <span class="ticker-item"><span class="label">LANGUAGES</span> ENGLISH · FARSI (NATIVE)</span>
+    <span class="ticker-item"><span class="label">BLOOMBERG</span> BMC CERTIFIED</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">[ NH ] TERMINAL</div>
+  <ul class="nav-links">
+    <li><a href="#experience">EXPERIENCE</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#education">EDUCATION</a></li>
+    <li><a href="#involvement">INVOLVEMENT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    AVAILABLE SUMMER 2026 · 2027
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+<div class="hero">
+  <div class="hero-left fade-in">
+    <div class="hero-eyebrow">CANDIDATE PROFILE // CORPORATE & INVESTMENT BANKING</div>
+    <h1 class="hero-name">NIMA<br><span>HAKIMI</span></h1>
+    <div class="hero-title">B.A. BUSINESS ADMINISTRATION · ASU W.P. CAREY · BELLEVUE, WA</div>
+    <p class="hero-tagline">
+      Buy-side analyst with hands-on experience in <strong>credit analysis, LBO modeling, and acquisition due diligence</strong> across lower-middle-market transactions — building the analytical foundation that matters most in corporate and investment banking.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">GET IN TOUCH →</a>
+      <a href="#projects" class="btn-outline">VIEW PROJECTS</a>
+    </div>
+  </div>
+
+  <div class="stats-panel fade-in" style="transition-delay:0.2s">
+    <div class="stats-header">
+      <span>CANDIDATE SNAPSHOT</span>
+      <span style="color:var(--green)">● ACTIVE</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">GPA</span>
+      <span class="stat-val orange">3.70 / 4.00</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">DEGREE</span>
+      <span class="stat-val">B.A. Business Administration</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">SCHOOL</span>
+      <span class="stat-val">ASU W.P. Carey</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">GRAD DATE</span>
+      <span class="stat-val">Dec 2027</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">CITIZENSHIP</span>
+      <span class="stat-val green">U.S. Citizen</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">LOCATION</span>
+      <span class="stat-val">Bellevue, WA</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">AVAILABILITY</span>
+      <span class="stat-val orange">Summer 2026 · 2027</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">LANGUAGES</span>
+      <span class="stat-val">English · Farsi</span>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">EXPERIENCE</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-grid">
+
+    <div class="exp-item fade-in" onclick="toggleExp(this)">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">MAVERICK PARTNERSHIP · SEARCH FUND</div>
+          <div class="exp-role">Search Fund Analyst Intern</div>
+          <div class="exp-date">JAN 2026 – APR 2026 · REMOTE (BOSTON, MA)</div>
+        </div>
+        <div class="exp-expand">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <ul class="exp-bullets">
+            <li>Performed fundamental credit and transaction feasibility analysis on 4+ lower-middle-market acquisition targets across lending services, engineering, healthcare, and industrial services; evaluated business quality, capital structure, leverage capacity, debt service coverage, downside risk, and risk/return profile.</li>
+            <li>Built buy-side LBO models with IRR, MOIC, leverage, cash flow, and downside sensitivity analyses for a live toll manufacturing acquisition; assessed debt capacity and financing viability to support acquisition diligence.</li>
+            <li>Analyzed 10 years of invoice-level data to evaluate revenue quality, customer concentration, product mix, cash flow durability, and borrower risk drivers for lender-oriented financial due diligence.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag orange">LBO MODELING</span>
+            <span class="tag orange">CREDIT ANALYSIS</span>
+            <span class="tag orange">ACQUISITION DUE DILIGENCE</span>
+            <span class="tag">DEBT CAPACITY</span>
+            <span class="tag">LEVERAGE ANALYSIS</span>
+            <span class="tag">CASH FLOW ANALYSIS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in" onclick="toggleExp(this)" style="transition-delay:0.08s">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">EXTERN · EQUITY RESEARCH</div>
+          <div class="exp-role">Equity Research Analyst Extern</div>
+          <div class="exp-date">SEP 2025 – NOV 2025 · REMOTE (NEW YORK, NY)</div>
+        </div>
+        <div class="exp-expand">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <ul class="exp-bullets">
+            <li>Analyzed MaxLinear (NYSE: MXL) using company filings, investor presentations, earnings commentary, and semiconductor industry demand drivers to assess valuation, liquidity profile, and key business risks.</li>
+            <li>Built an integrated 3-statement model and DCF valuation with upside/downside cases based on optical interconnect adoption, margin recovery, and semiconductor cycle assumptions.</li>
+            <li>Assessed business model, profitability, operating leverage, financial statement trends, and market risks in a recovering semiconductor environment.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag orange">DCF VALUATION</span>
+            <span class="tag orange">3-STATEMENT MODEL</span>
+            <span class="tag">EQUITY RESEARCH</span>
+            <span class="tag">FINANCIAL STATEMENT ANALYSIS</span>
+            <span class="tag">SEMICONDUCTORS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in" onclick="toggleExp(this)" style="transition-delay:0.12s">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">ALLIN PARTNERS · VENTURE FUNDRAISING ADVISORY</div>
+          <div class="exp-role">Financial Analyst</div>
+          <div class="exp-date">NOV 2022 – DEC 2023 · REMOTE (LONDON, UK)</div>
+        </div>
+        <div class="exp-expand">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <ul class="exp-bullets">
+            <li>Built DCF models, 3-statement forecasts, financial schedules, and investor presentations to support capital raising processes for FinTech, Tech, and Life Sciences startups.</li>
+            <li>Worked with 12+ founders to refine financial assumptions, business model narratives, valuation positioning, and investor-facing materials for seed and Series A fundraising rounds.</li>
+            <li>Prepared comparable company and precedent transaction analyses to support valuation ranges; sourced 100+ investors via PitchBook and supported outreach pipeline management.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag orange">COMPARABLE COMPANIES</span>
+            <span class="tag orange">PRECEDENT TRANSACTIONS</span>
+            <span class="tag">PITCH DECKS</span>
+            <span class="tag">INVESTOR RELATIONS</span>
+            <span class="tag">PITCHBOOK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in" onclick="toggleExp(this)" style="transition-delay:0.16s">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">STARBUCKS · BELLEVUE, WA</div>
+          <div class="exp-role">Barista Trainer</div>
+          <div class="exp-date">JUN 2024 – PRESENT</div>
+        </div>
+        <div class="exp-expand">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-body-inner">
+          <ul class="exp-bullets">
+            <li>Train new hires on standard operating procedures and customer service standards while managing 200+ daily transactions in a high-volume store requiring accuracy, communication, and stress resilience.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">TRAINING & DEVELOPMENT</span>
+            <span class="tag">OPERATIONS</span>
+            <span class="tag">TEAM LEADERSHIP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">SELECT PROJECTS</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-wrap fade-in">
+    <table class="projects-table">
+      <thead>
+        <tr>
+          <th>PROJECT</th>
+          <th>TYPE</th>
+          <th>SCOPE OF WORK</th>
+          <th>OUTCOME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="proj-title">Toll Manufacturing — Portfolio Company</div>
+            <div class="proj-sector">Industrial Manufacturing</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">LBO + Due Diligence</td>
+          <td>10-year invoice-level data analysis for revenue quality and customer concentration; LBO model with IRR and downside sensitivity; equipment financing IRR analysis; contributed to investor fundraising materials</td>
+          <td><span class="proj-badge">COMPLETED</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proj-title">MaxLinear (NYSE: MXL)</div>
+            <div class="proj-sector">Semiconductors · Equity Research</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">Equity Research</td>
+          <td>Integrated 3-statement model and DCF with bull/bear cases; optical interconnect adoption and semiconductor cycle analysis; full investment thesis</td>
+          <td><span class="proj-badge">COMPLETED</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proj-title">Hard Money Lending Acquisition</div>
+            <div class="proj-sector">Lending Services · TX / OK</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">LBO + Credit Memo</td>
+          <td>Full LBO model with leverage and cash flow analysis; credit memo with financing recommendation; assessed loan book quality and capital structure feasibility</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proj-title">Clinical Diagnostics Acquisition</div>
+            <div class="proj-sector">Healthcare · New York, NY</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">Credit Analysis</td>
+          <td>Fundamental credit and transaction feasibility analysis; evaluated revenue quality, chargeback risk, and operating cost structure against industry benchmarks</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proj-title">Fire Protection Contractor Acquisition</div>
+            <div class="proj-sector">Industrial Services · TX</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">LBO + Valuation</td>
+          <td>Full valuation analysis with LBO scenario modeling; assessed contractor revenue quality, backlog durability, and debt service capacity</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="proj-title">Professional Services Firm Acquisition</div>
+            <div class="proj-sector">CPA / Accounting · Southeast US</div>
+          </td>
+          <td style="color:var(--muted);font-size:11px;white-space:nowrap;">Transaction Analysis</td>
+          <td>Practice profile analysis; evaluated client retention, recurring revenue quality, and succession risk as key acquisition risk drivers</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">SKILLS & TOOLS</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block fade-in">
+      <div class="skill-cat">FINANCIAL ANALYSIS</div>
+      <ul class="skill-list">
+        <li>Fundamental Credit Analysis</li>
+        <li>LBO Modeling</li>
+        <li>DCF Valuation</li>
+        <li>3-Statement Modeling</li>
+        <li>Debt Capacity Analysis</li>
+        <li>Cash Flow Analysis</li>
+      </ul>
+    </div>
+    <div class="skill-block fade-in" style="transition-delay:0.08s">
+      <div class="skill-cat">TRANSACTION WORK</div>
+      <ul class="skill-list">
+        <li>Comparable Companies Analysis</li>
+        <li>Precedent Transactions</li>
+        <li>Financial Due Diligence</li>
+        <li>Risk / Return Analysis</li>
+        <li>Leverage & Capital Structure</li>
+        <li>Acquisition Financing</li>
+      </ul>
+    </div>
+    <div class="skill-block fade-in" style="transition-delay:0.12s">
+      <div class="skill-cat">TECHNICAL TOOLS</div>
+      <ul class="skill-list">
+        <li>Excel (Advanced)</li>
+        <li>Bloomberg Terminal</li>
+        <li>Capital IQ</li>
+        <li>PitchBook</li>
+        <li>Tableau</li>
+        <li>Python · SQL</li>
+      </ul>
+    </div>
+    <div class="skill-block fade-in" style="transition-delay:0.16s">
+      <div class="skill-cat">RESEARCH & COMMUNICATION</div>
+      <ul class="skill-list">
+        <li>Industry & Company Research</li>
+        <li>Financial Statement Analysis</li>
+        <li>Investment Memo Writing</li>
+        <li>Investor Presentations</li>
+        <li>Credit Memo Writing</li>
+        <li>English & Farsi (Native)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px;">
+    <div class="section-header fade-in" style="margin-bottom:16px;">
+      <span class="section-num" style="font-size:10px;">CERTIFICATIONS</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid fade-in">
+      <div class="cert-card">
+        <div class="cert-icon">★</div>
+        <div>
+          <div class="cert-name">FMVA®</div>
+          <div class="cert-org">Corporate Finance Institute (CFI)</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">◈</div>
+        <div>
+          <div class="cert-name">Credit Analysis for Lenders</div>
+          <div class="cert-org">Financial Edge Training</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Bloomberg Market Concepts</div>
+          <div class="cert-org">Bloomberg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">EDUCATION</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card fade-in" data-abbr="ASU">
+      <div class="edu-school">ARIZONA STATE UNIVERSITY · W.P. CAREY SCHOOL OF BUSINESS</div>
+      <div class="edu-degree">Bachelor of Arts in Business Administration</div>
+      <div class="edu-meta">
+        Jan 2025 – Dec 2027 · Tempe, AZ<br>
+        Fundamentals of Finance · Money &amp; Banking<br>
+        Financial &amp; Managerial Accounting · Statistics
+        <span class="edu-gpa">3.70</span>GPA
+      </div>
+    </div>
+    <div class="edu-card fade-in" data-abbr="IAU" style="transition-delay:0.1s">
+      <div class="edu-school">ISLAMIC AZAD UNIVERSITY · SCIENCE AND RESEARCH BRANCH</div>
+      <div class="edu-degree">Bachelor of Science in Cellular &amp; Molecular Biology</div>
+      <div class="edu-meta">
+        Oct 2019 – Jun 2023 · Tehran, Iran<br>
+        Statistics · Data Analysis · Informatics · Mathematics
+        <span class="edu-gpa">3.70<small style="font-size:15px"> / 4.00</small></span>GPA
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVOLVEMENT -->
+<section id="involvement">
+  <div class="section-header fade-in">
+    <span class="section-num">05</span>
+    <h2 class="section-title">INVOLVEMENT</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="vol-grid">
+    <div class="vol-card fade-in">
+      <div class="vol-org">JUNIOR ACHIEVEMENT OF WASHINGTON</div>
+      <div class="vol-role">Volunteer</div>
+      <div class="vol-date">MAY 2026 – PRESENT · SEATTLE, WA</div>
+      <div class="vol-desc">Engage in educational programs supporting youth financial literacy, work readiness, and entrepreneurship initiatives across the greater Seattle area.</div>
+    </div>
+    <div class="vol-card fade-in" style="transition-delay:0.08s">
+      <div class="vol-org">SEATTLE FINANCE COLLECTIVE</div>
+      <div class="vol-role">Active Member</div>
+      <div class="vol-date">MAR 2025 – PRESENT · SEATTLE, WA</div>
+      <div class="vol-desc">Participate in monthly networking events with finance professionals across banking, private equity, and asset management; volunteer at Pike Market Food Bank.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <h2 class="contact-headline">LET'S<br><span>CONNECT</span></h2>
+      <p class="contact-subline">
+        Pursuing corporate and investment banking opportunities. Available for Summer 2026 and Summer 2027 internships. U.S. Citizen, open to relocation.
+      </p>
+    </div>
+    <div class="contact-links fade-in" style="transition-delay:0.12s">
+      <a href="mailto:Nima-Hakimi@outlook.com" class="contact-link">
+        <span class="contact-link-label">EMAIL</span>
+        <span class="contact-link-val">Nima-Hakimi@outlook.com</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="mailto:nhakimi1@asu.edu" class="contact-link">
+        <span class="contact-link-label">ASU EMAIL</span>
+        <span class="contact-link-val">nhakimi1@asu.edu</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="tel:14253758640" class="contact-link">
+        <span class="contact-link-label">PHONE</span>
+        <span class="contact-link-val">1 (425) 375-8640</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/nima-hakimi" class="contact-link">
+        <span class="contact-link-label">LINKEDIN</span>
+        <span class="contact-link-val">linkedin.com/in/nima-hakimi</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="#" class="contact-link">
+        <span class="contact-link-label">LOCATION</span>
+        <span class="contact-link-val">Bellevue, WA · Open to Relocation</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 NIMA HAKIMI</span>
+  <span>CORPORATE & INVESTMENT BANKING · SUMMER 2026 / 2027</span>
+  <span style="color:var(--orange)">[ NH ] TERMINAL</span>
+</footer>
+
+</main>
+
+<script>
+  function toggleExp(el) {
+    const wasActive = el.classList.contains('active');
+    document.querySelectorAll('.exp-item').forEach(i => i.classList.remove('active'));
+    if (!wasActive) el.classList.add('active');
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  const sections = document.querySelectorAll('section[id], div[id="contact"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const scrollObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => scrollObs.observe(s));
+</script>
+</body>
+</html>
